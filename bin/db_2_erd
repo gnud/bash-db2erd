@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# install graphviz:  sudo apt-get install graphviz
+# DOWNLOAD: schemacrawler-postgresql-11.02.01, put a symlink in ~/bin/sc.sh
+# TODO: add command line arguments to fill the variable
+
+SCHEMACRAWLER_PATH=~/bin/scp/
+
+# FIX: replace the hardcoded values
+SERVER="postgresql"  # FILL THIS
+HOST="localhost" # FILL THIS
+PORT="5432"
+DATABASE="" # FILL THIS
+SCHEMA="public" # FILL THIS
+USER="" # FILL THIS
+PASSWORD="" # FILL THIS
+
+#OUTPUTTYPE="svg"
+OUTPUTTYPE="pdf"
+OUTPUTFILENAME="myerd"
+OUTPUTPATH="$HOME/$OUTPUTFILENAME.$OUTPUTTYPE"
+
+
+cd $SCHEMACRAWLER_PATH
+./sc.sh -server="$SERVER" -host="$HOST" -port="$PORT" -database="$DATABASE" -schemas="$SCHEMA" -user="$USER" -password="$PASSWORD" -infolevel=maximum -command=graph -outputformat="$OUTPUTTYPE" -outputfile="$OUTPUTPATH" $* 
